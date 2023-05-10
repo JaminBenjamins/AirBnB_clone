@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-""" This module defines unittest for models/engine/file_storage.py.
+"""
+This module defines unittests for models/engine/file_storage.py.
 
 Unittest classes:
     TestFileStorageInstantiation
@@ -12,7 +13,7 @@ import models
 import unittest
 from datetime import datetime
 from models.base_model import BaseModel
-from models.engine.file_storage import Filestorage
+from models.engine.file_storage import FileStorage
 from models.user import User
 from models.state import State
 from models.place import Place
@@ -20,16 +21,17 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 
-class TestFileStorageInstantiation(unittest.TestCase)
+
+class TestFileStorageInstantiation(unittest.TestCase):
     """Unittests for testing instantiation of the FileStorage class."""
 
     def test_file_storage_instantiation_no_args(self):
-        self.assertEqual(type(Filestorage()), Filestorage)
+        self.assertEqual(type(FileStorage()), FileStorage)
 
     def test_file_storage_instantiation_with_arg(self):
         with self.assertRaises(TypeError):
-            Filestorage(None)
-    
+            FileStorage(None)
+
     def test_file_path_is_private_str(self):
         self.assertEqual(str, type(FileStorage._FileStorage__file_path))
 
@@ -86,7 +88,8 @@ class TestFileStorageMethods(unittest.TestCase):
         models.storage.new(city)
         models.storage.new(amenity)
         models.storage.new(review)
-        self.assertIn("BaseModel." + base_model.id, models.storage.all().keys())
+        self.assertIn("BaseModel." + base_model.id,
+                      models.storage.all().keys())
         self.assertIn(base_model, models.storage.all().values())
         self.assertIn("User." + user.id, models.storage.all().keys())
         self.assertIn(user, models.storage.all().values())
