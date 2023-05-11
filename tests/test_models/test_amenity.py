@@ -109,4 +109,4 @@ class TestAmenitySave(unittest.TestCase):
         except FileNotFoundError:
             pass
         try:
-            os.rename("tmp", "file.json")
+            os.rename("tmp", "file.json)
