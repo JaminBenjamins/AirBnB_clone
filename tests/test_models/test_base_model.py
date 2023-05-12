@@ -15,7 +15,7 @@ from models.base_model import BaseModel
 
 
 class TestBaseModel_instantiation(unittest.TestCase):
-    """The purpose of the unittests is to verify the proper instantiation of the BaseModel class."""
+    """unittests verification on the instantiation of the BaseModel class."""
 
     def test_no_args_instantiates(self):
         self.assertEqual(BaseModel, type(BaseModel()))
@@ -32,7 +32,7 @@ class TestBaseModel_instantiation(unittest.TestCase):
     def test_updated_at_is_public_datetime(self):
         self.assertEqual(datetime, type(BaseModel().updated_at))
 
-    def test_two_models_unique_ids(self):
+    idef test_two_models_unique_ids(self):
         bm1 = BaseModel()
         bm2 = BaseModel()
         self.assertNotEqual(bm1.id, bm2.id)
@@ -139,7 +139,7 @@ class TestBaseModel_save(unittest.TestCase):
 
 
 class TestBaseModel_to_dict(unittest.TestCase):
-    """The purpose of the unittests is to test the to_dict method of the BaseModel class."""
+    """Unittests for testing the to_dict method of the BaseModel class."""
 
     def test_to_dict_type(self):
         bm = BaseModel()
