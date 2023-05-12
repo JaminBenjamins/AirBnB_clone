@@ -14,6 +14,7 @@ from time import sleep
 from models.place import Place
 from models import storage
 
+
 class TestPlaceInstantiation(unittest.TestCase):
     """Unittests for testing instantiation of the Place Class."""
 
