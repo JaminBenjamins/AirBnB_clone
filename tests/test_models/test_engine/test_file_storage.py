@@ -112,4 +112,69 @@ class TestFileStorageMethods(unittest.TestCase):
         with self.assertRaises(AttributeError):
             models.storage.new(None)
 
-    def test_save
+    def test_save(self):
+        bm = BaseModel()
+        us = User()
+        st = State()
+        pl = Place()
+        cy = City()
+        am = Amenity()
+        rv = Review()
+        models.storage.new(bm)
+        models.storage.new(us)
+        models.storage.new(st)
+        models.storage.new(pl)
+        models.storage.new(cy)
+        models.storage.new(am)
+        models.storage.new(rv)
+        models.storage.save()
+        save_text = ""
+        with open("file.json", "r") as f:
+            save_text = f.read()
+            self.assertIn("BaseModel." + bm.id, save_text)
+            self.assertIn("User." + us.id, save_text)
+            self.assertIn("State." + st.id, save_text)
+            self.assertIn("Place." + pl.id, save_text)
+            self.assertIn("City." + cy.id, save_text)
+            self.assertIn("Amenity." + am.id, save_text)
+            self.assertIn("Review." + rv.id, save_text)
+
+    def test_save_with_arg(self):
+        with self.assertRaises(TypeError):
+            models.storage.save(None)
+
+    def test_reload(self):
+        bm = BaseModel()
+        us = User()
+        st = State()
+        pl = Place()
+        cy = City()
+        am = Amenity()
+        rv - Review()
+        models.storage.new(bm)
+        models.storage.new(us)
+        models.storage.new(st)
+        models.storage.new(pl)
+        models.storage.new(st)
+        models.storage.new(pl)
+        models.storage.new(rv)
+        models.storage.save()
+        models.storage.reload()
+        obj = FileStorage.__FileStorage__objects
+        self.assertIn("BaseModel." + bm.id, obj)
+        self.assertIn("User." + us.id, obj)
+        self.assertIn("State." + st.id, obj)
+        self.assertI("Place." + pl.id, obj)
+        self.assertIn("City." + cy.id, obj)
+        self.assertIn("Amenity." + am.id, obj)
+        self.assertIn("Review." + rv.id, obj)
+
+    def test_reload_no_file(self):
+        self.assertRaises(FileNotFoundError, model.storage.reload())
+
+    def test_reload_with_arg(self):
+        with self.assertRaises(TypeError):
+            models.storage.reload(None)
+            
+    if __name__ == "__main__":
+        unittest.main()
