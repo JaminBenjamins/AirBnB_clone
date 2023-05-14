@@ -1,10 +1,7 @@
 #!/usr/bin/python3
 """ Defining the base model class """
-    """
-        The class where other classes inherit from
-    """
 import models
-import uuid import uuid4
+from uuid import uuid4
 from datetime import datetime
 
 
@@ -14,7 +11,7 @@ class BaseModel:
         """
             Initialization of the BaseClass
         """
-        tfmt = %Y-%m-%dT%H:%M:%S.%f
+        tfmt = "%Y-%m-%dT%H:%M:%S.%f"
         self.id = str(uuid4())
         self.created_at = datetime.today()
         self.updated_at = datetime.today()
@@ -25,15 +22,15 @@ class BaseModel:
                     self.__dict__[k] = datetime.striptime(v, tfmt)
                 else:
                     self.__dict__[k] = v
-		else:
-			models.storage.new(self)
+        else:
+            models.storage.new(self)
 	
-	def save(self):
+    def save(self):
         """
 			Time creation or updating
 		"""
         self.updated_at = datetime.today()
-		models.storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """
@@ -46,7 +43,7 @@ class BaseModel:
         dictr["__class__"] = self.__class__.__name__
         return dictr
 
-	def __str__(self):
+    def __str__(self):
         """
             Return print/string representation of Base Model
 		"""
