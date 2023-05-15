@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """ Defines the CLI console for the hBNB """
+import re
+import cmd
 from models.base_model import BaseModel
 from models.user import User
 from models.amenity import Amenity
@@ -9,8 +11,6 @@ from models.place import Place
 from models.review import Review
 from models import storage
 from shlex import split
-import re
-import cmd
 
 
 def parse(arg):
@@ -21,7 +21,7 @@ def parse(arg):
             return [d.strip(",") for d in split(arg)]
         else:
             lexic = split(arg[:brackets.span()[0]])
-            retrace = [i.strip(",") for i in lexic]
+            retrace = [d.strip(",") for d in lexic]
             retrace.append(brackets.group())
             return retrace
 
@@ -134,7 +134,7 @@ class HBNBCommand(cmd.Cmd):
             count = 0
             for obj in storage.all().values():
                 if argl[0] == obj.__class__.name__:
-                    count++
+                    count += 1
             print(count)
 
         def do_update(self, arg):
@@ -174,7 +174,7 @@ class HBNBCommand(cmd.Cmd):
                     valtype = type(obj.__class__.__dict__[argl[2]])
                     obj.__dict__[argl[2]] = valtype(argl[3])
                 else:
-                    obj.__dict__.[argl[2]] = argl[3]
+                    obj.__dict__[argl[2]] = argl[3]
             elif type(eval(argl[2])) == dict:
                 obj = objdict["{}.{}".format(argl[0], argl[1])]
                 for k, v in eval(argl[2]).items():
