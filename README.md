@@ -278,4 +278,4 @@ $ python3 unittest -m tests/test_console.py
 
 ## Authors :black_nib:
 * **Benjamin Otieno** <[jaminbenjamins](https://github.com/jaminbenjamins)>
-* **John Njau** <[sazad44](https://github.com/johnnjau)>
+* **John Njau** <[johnnjau](https://github.com/johnnjau)>
