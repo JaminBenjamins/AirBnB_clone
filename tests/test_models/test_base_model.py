@@ -7,7 +7,7 @@ Unittest classes:
     TestBaseModel_to_dict
 """
 import os
-import models
+from models import *
 import unittest
 from datetime import datetime
 from time import sleep
@@ -32,7 +32,7 @@ class TestBaseModel_instantiation(unittest.TestCase):
     def test_updated_at_is_public_datetime(self):
         self.assertEqual(datetime, type(BaseModel().updated_at))
 
-    idef test_two_models_unique_ids(self):
+    def test_two_models_unique_ids(self):
         bm1 = BaseModel()
         bm2 = BaseModel()
         self.assertNotEqual(bm1.id, bm2.id)
