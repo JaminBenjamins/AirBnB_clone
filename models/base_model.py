@@ -24,19 +24,19 @@ class BaseModel:
                     self.__dict__[k] = v
         else:
             models.storage.new(self)
-	
+
     def save(self):
         """
-			Time creation or updating
-		"""
+        Time creation or updating
+        """
         self.updated_at = datetime.today()
         models.storage.save()
 
     def to_dict(self):
         """
-			Returns the dictionary BaseModel instance
-			Has key value pair for representing class
-		"""
+            Returns the dictionary BaseModel instance
+            Has key value pair for representing class
+        """
         dictr = self.__dict__.copy()
         dictr["created_at"] = self.created_at.isoformat()
         dictr["updated_at"] = self.updated_at.isoformat()
@@ -46,6 +46,6 @@ class BaseModel:
     def __str__(self):
         """
             Return print/string representation of Base Model
-		"""
+        """
         clsname = self.__class__.__name__
         return "[{}] ({}) {}".format(clsname, self.id, self.__dict__)
