@@ -12,19 +12,19 @@ import json
 
 class FileStorage:
     """ A representation of data storage abstraction
-    
+
     Attributes:
         _file_path (str): The path to save objects
         _objects (dict): A dictionary object
     """
-    
+
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
         """ Returns a dictionary of objects """
         return FileStorage.__objects
-    
+
     def new(self, obj):
         """ Sets in __objects with the class name as key """
         FileStorage.__objects["{}.{}".format(ocname, obj.id)] = obj
@@ -37,8 +37,12 @@ class FileStorage:
     with open(FileStorage.__file_path, "w") as f:
         json.dump(objdict, f)
 
+
+class MyClass:
     def reload(self):
         """ Deserialize the JSON file __file_path to the respective object """
+        pass
+
         try:
             with open(FileStorage.__file_path) as f:
                 objdict = json.load(f)
